@@ -5,13 +5,14 @@
  */
 package presentationLayer;
 import businessLayer.*;
+import java.io.FileNotFoundException;
 import java.text.ParseException;
 /**
  *
  * @author Picaso
  */
 public class UI {
-    public static void main(String[] args) throws ParseException
+    public static void main(String[] args) throws ParseException, FileNotFoundException
     {
         clients bl = new clients();
         

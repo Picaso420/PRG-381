@@ -166,11 +166,11 @@ public class clients {
         }
     }
     
-    public Double calcOrdeNumber()
+    public int calcOrdeNumber() throws FileNotFoundException, ParseException
     {
         int count = 0;
         
-        clientsDAL clientsData = new clientDAL();
+        clientsDAL clientsData = new clientsDAL();
         List<clients> clientsList = clientsData.GetClients();
         
         for(int i = 0; i >= clientsList.size(); i++)
@@ -211,7 +211,7 @@ public class clients {
     }
     
     //Calculation class creation.
-    public void Calc() throws ParseException {
+    public void Calc() throws ParseException, FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please give the date in the following format: MM/dd/yyyy");
         Date userdate = new SimpleDateFormat("MM/dd/yyyy").parse(scanner.nextLine());
@@ -255,13 +255,13 @@ public class clients {
                 } else if (calDay == 0) {
                     System.out.println("You can't book on current day");
                 } else if (calDay >= 15) {
-                    calcConfirmationPrice()
+                    calcConfirmationPrice();
                 }
             } else {
-                calcConfirmationPrice()
+                calcConfirmationPrice();
             }
         } else {
-            calcConfirmationPrice()
+            calcConfirmationPrice();
         }
     }
 }
