@@ -138,4 +138,20 @@ public class clients {
         this.foodSelection = foodSelection;
         this.price = price;       
     }
+    
+    //Create list which contains all if the clients data.
+    public List<clients> cleintsData() throws FileNotFoundException, ParseException
+    {
+        clientsDAL clientsData = new clientsDAL();
+        
+        List<clients> clientsList = clientsData.GetClients();
+        
+        if(clientsList.isEmpty())
+        {
+            return clientsList;
+        } else 
+        {
+            return null;
+        }
+    }
 }
