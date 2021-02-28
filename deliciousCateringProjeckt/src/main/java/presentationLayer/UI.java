@@ -13,6 +13,8 @@ import java.text.ParseException;
 public class UI {
     public static void main(String[] args) throws ParseException
     {
+        clients bl = new clients();
         
+        bl.Calc();
     }
 }
