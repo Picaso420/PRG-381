@@ -18,6 +18,7 @@ import java.time.ZoneId;
  */
 public class clients {
     //Variable declarations.
+    private int orderNumber;
     private String address;
     private String eventType;
     private Date date;
@@ -27,9 +28,13 @@ public class clients {
     private String decorations;
     private String foodSelection;
     private Double price;
-    private boolean discountFlag;
+    private Double confirmationPrice;
+    private boolean discountFlag = false;
     
-    //Set variables.    
+    //Set variables.
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
     public void setAddress(String address)
     {
         this.address = address;
@@ -65,7 +70,7 @@ public class clients {
         this.decorations = decorations;
     }
     
-    public void setFoodSelections(String foodSelection)
+    public void setFoodSelection(String foodSelection)
     {
         this.foodSelection = foodSelection;
     }
@@ -75,7 +80,11 @@ public class clients {
         this.price = price;
     }
     
-    //Get variables.    
+    //Get variables.
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+    
     public String getAddress()
     {
         return address;
@@ -111,7 +120,7 @@ public class clients {
         return decorations;
     }
     
-    public String getFoodSelections()
+    public String getFoodSelection()
     {
         return foodSelection;
     }
@@ -127,8 +136,9 @@ public class clients {
         
     }
     
-    public clients(String address, String eventType, String date, int time, int amountOfPeople, String theme, String decorations, String foodSelection, Double price) throws ParseException
+    public clients(int orderNumber, String address, String eventType, String date, int time, int amountOfPeople, String theme, String decorations, String foodSelection, Double price) throws ParseException
     {
+        this.orderNumber = orderNumber;
         this.address = address;
         this.eventType = eventType;
         this.date = new SimpleDateFormat("MM/dd/yyyy").parse(date);
@@ -137,7 +147,7 @@ public class clients {
         this.theme = theme;
         this.decorations = decorations;
         this.foodSelection = foodSelection;
-        this.price = price;       
+        this.price = price;
     }
     
     //Create list which contains all if the clients data.
@@ -154,6 +164,23 @@ public class clients {
         {
             return null;
         }
+    }
+    
+    public Double calcOrdeNumber()
+    {
+        int count = 0;
+        
+        clientsDAL clientsData = new clientDAL();
+        List<clients> clientsList = clientsData.GetClients();
+        
+        for(int i = 0; i >= clientsList.size(); i++)
+        {
+            count++;
+        }
+        
+        orderNumber = count;
+        
+        return orderNumber;
     }
     
     public Double Discount(int amountOfPeople) {
@@ -174,6 +201,13 @@ public class clients {
                     System.out.println("You qualified for the discount");
                 }
         return price;
+    }
+    
+    public Double calcConfirmationPrice()
+    {
+        confirmationPrice = price - (50 / 100 * price);
+        
+        return confirmationPrice;
     }
     
     //Calculation class creation.
@@ -207,6 +241,7 @@ public class clients {
         int calDay = intDay - intThisDay;//day after calculations
         int calMonth = intMonth - intThisMonth;
         int calYear = intYear - intThisYear;
+        calcOrdeNumber();
         Discount(amountOfPeople);
         if (calYear < 0) {
             System.out.println("You can't book in the past");
@@ -220,14 +255,13 @@ public class clients {
                 } else if (calDay == 0) {
                     System.out.println("You can't book on current day");
                 } else if (calDay >= 15) {
-
+                    calcConfirmationPrice()
                 }
             } else {
-                
-                
+                calcConfirmationPrice()
             }
         } else {
-                
+            calcConfirmationPrice()
         }
     }
 }

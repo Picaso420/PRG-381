@@ -27,9 +27,7 @@ public class clientsDAL {
         while(sc.hasNextLine())
 	{         
             String[] line = sc.nextLine().split(",");
-            //SimpleDateFormat dt = new SimpleDateFormat("MM/dd/yyyy");
-            
-            clientsList.add(new clients(line[0], line[1], line[2], Integer.parseInt(line[3]), Integer.parseInt(line[4]), line[5], line[6], line[7], Double.parseDouble(line[8])));
+            clientsList.add(new clients(Integer.parseInt(line[0]), line[1], line[2], line[3], Integer.parseInt(line[4]), Integer.parseInt(line[5]), line[6], line[7], line[8], Double.parseDouble(line[9])));
 	}
         
 	return clientsList;
