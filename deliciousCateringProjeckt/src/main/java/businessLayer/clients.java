@@ -155,6 +155,16 @@ public class clients {
         }
     }
     
+    public Double Discount(int amountOfPeople) {
+        double pricing = 20.00;//just for testing
+        price = amountOfPeople * pricing;
+        if (amountOfPeople > 40) {
+            double answer = price - (15 / 100 * price);
+            price=answer;
+        }
+        return price;
+    }
+    
     //Calculation class creation.
     public void Calc() throws ParseException {
         Scanner scanner = new Scanner(System.in);
@@ -202,7 +212,7 @@ public class clients {
 
                 }
             } else {
-                System.out.println("Give 50% of total");
+                price=1.1;
             }
         } else {
 
