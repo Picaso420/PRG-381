@@ -157,8 +157,11 @@ public class clients {
     }
     
     public Double Discount(int amountOfPeople) {
+        Scanner scanner = new Scanner(System.in);
         double pricing = 20.00;//just for testing
         price = amountOfPeople * pricing;
+        System.out.println("How many people will attend?");
+                amountOfPeople=scanner.nextInt();
         if (amountOfPeople > 40) {
             discountFlag=true;
             double answer = price - (15 / 100 * price);
@@ -204,7 +207,7 @@ public class clients {
         int calDay = intDay - intThisDay;//day after calculations
         int calMonth = intMonth - intThisMonth;
         int calYear = intYear - intThisYear;
-
+        Discount(amountOfPeople);
         if (calYear < 0) {
             System.out.println("You can't book in the past");
         } else if (calYear == 0) {
@@ -219,19 +222,12 @@ public class clients {
                 } else if (calDay >= 15) {
 
                 }
-            } else {                        
-                System.out.println("How many people will attend?");
-                amountOfPeople=scanner.nextInt();
-                Discount(amountOfPeople);
-                
+            } else {
                 
                 
             }
         } else {
-
-            System.out.println("How many people will be there?");
-                amountOfPeople=scanner.nextInt();
-                Discount(amountOfPeople);
+                
         }
     }
 }
