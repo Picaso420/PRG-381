@@ -27,6 +27,7 @@ public class clients {
     private String decorations;
     private String foodSelection;
     private Double price;
+    private boolean discountFlag;
     
     //Set variables.    
     public void setAddress(String address)
@@ -159,9 +160,16 @@ public class clients {
         double pricing = 20.00;//just for testing
         price = amountOfPeople * pricing;
         if (amountOfPeople > 40) {
+            discountFlag=true;
             double answer = price - (15 / 100 * price);
             price=answer;
         }
+        else{
+            discountFlag=false;
+        }
+        if (discountFlag) {
+                    System.out.println("You qualified for the discount");
+                }
         return price;
     }
     
@@ -211,12 +219,19 @@ public class clients {
                 } else if (calDay >= 15) {
 
                 }
-            } else {
-                price=1.1;
+            } else {                        
+                System.out.println("How many people will attend?");
+                amountOfPeople=scanner.nextInt();
+                Discount(amountOfPeople);
+                
+                
+                
             }
         } else {
 
-            System.out.println("Give 50% of total");
+            System.out.println("How many people will be there?");
+                amountOfPeople=scanner.nextInt();
+                Discount(amountOfPeople);
         }
     }
 }
