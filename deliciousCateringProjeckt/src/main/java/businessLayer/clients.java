@@ -154,4 +154,59 @@ public class clients {
             return null;
         }
     }
+    
+    //Calculation class creation.
+    public void Calc() throws ParseException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please give the date in the following format: MM/dd/yyyy");
+        Date userdate = new SimpleDateFormat("MM/dd/yyyy").parse(scanner.nextLine());
+
+        //getting day of date
+        SimpleDateFormat dfDay = new SimpleDateFormat("dd");
+        String strDay = dfDay.format(userdate);//converts day of date to string      
+        int intDay = Integer.parseInt(strDay);//converts string to int
+
+        //getting month of date
+        SimpleDateFormat dfMonth = new SimpleDateFormat("MM");
+        String strMonth = dfMonth.format(userdate);
+        int intMonth = Integer.parseInt(strMonth);
+
+        //getting year of date
+        SimpleDateFormat dfYear = new SimpleDateFormat("yyyy");
+        String strYear = dfYear.format(userdate);
+        int intYear = Integer.parseInt(strYear);
+
+        //Getting current date
+        Date ThisDate = new Date();
+        LocalDate localDate = ThisDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int intThisDay = localDate.getDayOfMonth();//current day
+        int intThisMonth = localDate.getMonthValue();
+        int intThisYear = localDate.getYear();
+
+        int calDay = intDay - intThisDay;//day after calculations
+        int calMonth = intMonth - intThisMonth;
+        int calYear = intYear - intThisYear;
+
+        if (calYear < 0) {
+            System.out.println("You can't book in the past");
+        } else if (calYear == 0) {
+            if (calMonth < 0) {
+                System.out.println("You can't book in the past");
+            } else if (calMonth == 0) {
+
+                if (calDay < 0) {
+                    System.out.println("You can't book in the past");
+                } else if (calDay == 0) {
+                    System.out.println("You can't book on current day");
+                } else if (calDay >= 15) {
+
+                }
+            } else {
+                System.out.println("Give 50% of total");
+            }
+        } else {
+
+            System.out.println("Give 50% of total");
+        }
+    }
 }
