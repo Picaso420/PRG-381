@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package presentationLayer;
-import businessLayer.*;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 /**
@@ -14,8 +13,6 @@ import java.text.ParseException;
 public class UI {
     public static void main(String[] args) throws ParseException, FileNotFoundException
     {
-        clients bl = new clients();
         
-        bl.Calc();
     }
 }
